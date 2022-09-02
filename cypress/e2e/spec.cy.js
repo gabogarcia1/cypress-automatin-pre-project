@@ -21,6 +21,6 @@ describe('Pre Entrega', () => {
   })
 
   it('Hacer click en show total price y verificar el precio acumulado de 2 productos', () => {
-    
+    homePage.clickOnlineShop()
   })
 })
