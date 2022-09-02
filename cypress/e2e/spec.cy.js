@@ -3,14 +3,14 @@
 import { LoginPage } from "../support/Pages/loginPage";
 import { RegistroPage } from "../support/Pages/registerPage";
 import { HomePage } from "../support/Pages/homePage";
-import { onlineShopPage } from "../support/Pages/onlineShopPage";
+import { ProductsPage } from "../support/Pages/productsPage";
 
 describe('Pre Entrega', () => {
   let datosLogin,productos;
   const loginPage= new LoginPage();
   const registerPage= new RegistroPage();
   const homePage = new HomePage();
-  const onlineShop=new onlineShopPage();
+  const productPage=new ProductsPage();
 
   before('Set Up',()=>{
     cy.fixture("loginData").then(datos=>{
@@ -27,10 +27,11 @@ describe('Pre Entrega', () => {
   })
 
   it('Hacer click en show total price y verificar el precio acumulado de 2 productos', () => {
-    homePage.clickOnlineShop()
-    onlineShop.checkUrl()
-    onlineShop.clickOnAddToCart(productos.PrimerProducto.nombre,productos.PrimerProducto.precio)
-    onlineShop.clickOnAddToCart(productos.SegundoProducto.nombre,productos.SegundoProducto.precio)
+    homePage.clickOnlineShop();
+    productPage.checkUrl();
+    productPage.clickOnAddToCart(productos.PrimerProducto.nombre,productos.PrimerProducto.precio);
+    productPage.clickOnAddToCart(productos.SegundoProducto.nombre,productos.SegundoProducto.precio);
+    productPage.clickOnGoToShoppingCart();
 
   })
 })
