@@ -30,7 +30,7 @@ describe('Pre Entrega', () => {
     homePage.clickOnlineShop()
     onlineShop.checkUrl()
     onlineShop.clickOnAddToCart(productos.PrimerProducto.nombre,productos.PrimerProducto.precio)
-
+    onlineShop.clickOnAddToCart(productos.SegundoProducto.nombre,productos.SegundoProducto.precio)
 
   })
 })
