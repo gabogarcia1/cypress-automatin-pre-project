@@ -11,5 +11,8 @@ export class HomePage{
     clickTodoListLink(){
         cy.get(this.todolistlink).click()
     }
+    clickOnlineShop(){
+        cy.get(this.onlineshoplink).click()
+    }
 
 }
