@@ -4,6 +4,7 @@ import { LoginPage } from "../support/Pages/loginPage";
 import { RegistroPage } from "../support/Pages/registerPage";
 import { HomePage } from "../support/Pages/homePage";
 import { ProductsPage } from "../support/Pages/productsPage";
+import { ShoppingCart } from "../support/Pages/shoppingcart";
 
 describe('Pre Entrega', () => {
   let datosLogin,productos;
@@ -11,6 +12,7 @@ describe('Pre Entrega', () => {
   const registerPage= new RegistroPage();
   const homePage = new HomePage();
   const productPage=new ProductsPage();
+  const shoppingCart=new ShoppingCart();
 
   before('Set Up',()=>{
     cy.fixture("loginData").then(datos=>{
@@ -32,6 +34,10 @@ describe('Pre Entrega', () => {
     productPage.clickOnAddToCart(productos.PrimerProducto.nombre,productos.PrimerProducto.precio);
     productPage.clickOnAddToCart(productos.SegundoProducto.nombre,productos.SegundoProducto.precio);
     productPage.clickOnGoToShoppingCart();
-
+    shoppingCart.verificarNombreProducto(productos.PrimerProducto.nombre)
+    shoppingCart.verificarNombreProducto(productos.SegundoProducto.nombre)
+    shoppingCart.verificarPrecioProducto(productos.PrimerProducto.precio)
+    shoppingCart.verificarPrecioProducto(productos.SegundoProducto.precio)
+    shoppingCart.verificarPrecioTotal()
   })
 })
