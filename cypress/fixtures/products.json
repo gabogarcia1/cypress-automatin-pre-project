@@ -2,12 +2,12 @@
     "PrimerProducto":
     {
         "nombre": "Black T-Shirt",
-        "precio" : "15"
+        "precio" : 15
     },
     "SegundoProducto":
     {
         "nombre": "White Pants",
-        "precio" : "20"
+        "precio" : 20
     }
 }
   

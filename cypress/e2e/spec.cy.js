@@ -38,6 +38,6 @@ describe('Pre Entrega', () => {
     shoppingCart.verificarNombreProducto(productos.SegundoProducto.nombre)
     shoppingCart.verificarPrecioProducto(productos.PrimerProducto.precio)
     shoppingCart.verificarPrecioProducto(productos.SegundoProducto.precio)
-    shoppingCart.verificarPrecioTotal()
+    shoppingCart.verificarPrecioTotal(`${productos.PrimerProducto.precio + productos.SegundoProducto.precio}`)
   })
 })

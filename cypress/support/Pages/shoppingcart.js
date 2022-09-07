@@ -11,10 +11,10 @@ export class ShoppingCart{
     verificarPrecioProducto(precio){
         cy.xpath(`//p[@id="productPrice" and @name="${precio}"]`).should("have.length",'1').and("have.text",`$${precio}`)
     }
-    verificarPrecioTotal(){
+    verificarPrecioTotal(precio){
         cy.xpath(this.showTotalPrice).click()
         cy.get("#price").invoke('text').then((secText)=>{
-            assert.equal(secText,"35")
+            assert.equal(secText,`${precio}`)
         })
     }
 
