@@ -51,14 +51,21 @@ Cypress.Commands.add('login',(username,password)=>{
         }
     }).then(respuesta =>{
         expect(respuesta.status).to.equal(200)
+        window.localStorage.setItem("token",respuesta.body.token)
+        window.localStorage.setItem("user",respuesta.body.user.username)
     })
+    cy.visit("/")
 })
 
 Cypress.Commands.add('deleteUser',(username)=>{
     cy.request({
-        method: "POST",
-        url: "https://pushing-it-backend.herokuapp.com/api/deleteuser" + username.toLowerCase(),
+        method: "DELETE",
+        url: "https://pushing-it-backend.herokuapp.com/api/deleteuser/" + username.toLowerCase(),
     }).then(respuesta =>{
         expect(respuesta.status).to.equal(200)
     })
+})
+
+Cypress.Commands.add("esperaBarraDeCarga",()=>{
+    cy.get("[role='progressbar']",{timeout:15000}).should("not.exist")
 })

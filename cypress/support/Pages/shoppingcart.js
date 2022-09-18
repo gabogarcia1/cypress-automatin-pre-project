@@ -21,7 +21,7 @@ export class ShoppingCart{
     }
 
     goToCheckoutPage(){
-        cy.get(this.goToCheckOutButton).click()
+        cy.xpath(this.goToCheckOutButton).click()
     }
 
 }

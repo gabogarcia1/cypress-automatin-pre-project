@@ -16,9 +16,7 @@ export class LoginPage{
     }
 
     login(usuario,password){
-        this.escribirUsuario(usuario)
-        this.escribirPassword(password)
-        this.clickLoginButton()
+        cy.login(usuario,password);
     }
 
 }

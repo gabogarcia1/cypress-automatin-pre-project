@@ -5,6 +5,7 @@ import { RegistroPage } from "../support/Pages/registerPage";
 import { HomePage } from "../support/Pages/homePage";
 import { ProductsPage } from "../support/Pages/productsPage";
 import { ShoppingCart } from "../support/Pages/shoppingcart";
+import { CheckoutPage } from "../support/Pages/checkoutPage";
 
 describe('Pre Entrega', () => {
   let datosUsuario,productos;
@@ -13,6 +14,7 @@ describe('Pre Entrega', () => {
   const homePage = new HomePage();
   const productPage=new ProductsPage();
   const shoppingCart=new ShoppingCart();
+  const checkOutPage= new CheckoutPage();
 
   before('Set Up',()=>{
     cy.fixture("userData").then(datos=>{
@@ -21,16 +23,15 @@ describe('Pre Entrega', () => {
     cy.fixture("products").then(prods=>{
       productos=prods;
     })
-  })
-  beforeEach("Crear usuario y loguarse",()=>{
-    cy.visit("/");
     
-    registerPage.clickIniciarSesionButton();
-    cy.login(datosUsuario.usuario,datosUsuario.password);
+  })
+  beforeEach("Crear usuario y loguarse",()=>{ 
+    registerPage.registrarUsuario(datosUsuario.usuario,datosUsuario.password, datosUsuario.gender,datosUsuario.day,datosUsuario.month,datosUsuario.year)
+    loginPage.login(datosUsuario.usuario,datosUsuario.password);
   })
 
   afterEach("Eliminar usuario creado",()=>{
-    
+    registerPage.borrarUsuario(datosUsuario.usuario)
   })
 
   it('Hacer click en show total price y verificar el precio acumulado de 2 productos', () => {
@@ -44,5 +45,16 @@ describe('Pre Entrega', () => {
     shoppingCart.verificarPrecioProducto(productos.PrimerProducto.precio)
     shoppingCart.verificarPrecioProducto(productos.SegundoProducto.precio)
     shoppingCart.verificarPrecioTotal(`${productos.PrimerProducto.precio + productos.SegundoProducto.precio}`)
+    shoppingCart.goToCheckoutPage()
+    checkOutPage.completeFirstName(datosUsuario.nombre)
+    checkOutPage.completeLastName(datosUsuario.apellido)
+    checkOutPage.completeCreditCardNumber(datosUsuario.creditCardNumber)
+    checkOutPage.clickOnPurchase()
+    checkOutPage.verificarDatosTicket(datosUsuario.nombre)
+    checkOutPage.verificarDatosTicket(datosUsuario.apellido)
+    checkOutPage.verificarDatosTicket(productos.PrimerProducto.nombre)
+    checkOutPage.verificarDatosTicket(productos.SegundoProducto.nombre)
+    checkOutPage.verificarDatosTicket(datosUsuario.creditCardNumber)
+    checkOutPage.verificarDatosTicket(`${productos.PrimerProducto.precio + productos.SegundoProducto.precio}`)
   })
 })
