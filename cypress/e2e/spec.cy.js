@@ -42,8 +42,8 @@ describe('Pre Entrega', () => {
     productPage.clickOnGoToShoppingCart();
     shoppingCart.verificarNombreProducto(productos.PrimerProducto.nombre)
     shoppingCart.verificarNombreProducto(productos.SegundoProducto.nombre)
-    shoppingCart.verificarPrecioProducto(productos.PrimerProducto.precio)
-    shoppingCart.verificarPrecioProducto(productos.SegundoProducto.precio)
+    shoppingCart.verificarPrecioProducto(productos.PrimerProducto.nombre,productos.PrimerProducto.precio)
+    shoppingCart.verificarPrecioProducto(productos.SegundoProducto.nombre,productos.SegundoProducto.precio)
     shoppingCart.verificarPrecioTotal(`${productos.PrimerProducto.precio + productos.SegundoProducto.precio}`)
     shoppingCart.goToCheckoutPage()
     checkOutPage.completeFirstName(datosUsuario.nombre)
