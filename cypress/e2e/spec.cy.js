@@ -7,7 +7,7 @@ import { ProductsPage } from "../support/Pages/productsPage";
 import { ShoppingCart } from "../support/Pages/shoppingcart";
 
 describe('Pre Entrega', () => {
-  let datosLogin,productos;
+  let datosUsuario,productos;
   const loginPage= new LoginPage();
   const registerPage= new RegistroPage();
   const homePage = new HomePage();
@@ -15,17 +15,22 @@ describe('Pre Entrega', () => {
   const shoppingCart=new ShoppingCart();
 
   before('Set Up',()=>{
-    cy.fixture("loginData").then(datos=>{
-      datosLogin=datos;
+    cy.fixture("userData").then(datos=>{
+      datosUsuario=datos;
     })
     cy.fixture("products").then(prods=>{
       productos=prods;
     })
   })
-  beforeEach("Before Each",()=>{
+  beforeEach("Crear usuario y loguarse",()=>{
     cy.visit("/");
+    
     registerPage.clickIniciarSesionButton();
-    loginPage.login(datosLogin.usuario,datosLogin.password);
+    cy.login(datosUsuario.usuario,datosUsuario.password);
+  })
+
+  afterEach("Eliminar usuario creado",()=>{
+    
   })
 
   it('Hacer click en show total price y verificar el precio acumulado de 2 productos', () => {

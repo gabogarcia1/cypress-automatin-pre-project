@@ -23,3 +23,42 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('registerUser',(username,password,gender,day,month,year)=>{
+    cy.request({
+        method: "POST",
+        url: "https://pushing-it-backend.herokuapp.com/api/register",
+        body : {
+            "username" : username,
+            "password": password,
+            "gender": gender,
+            "day": day,
+            "month": month,
+            "year": year,
+        }
+    }).then(respuesta =>{
+        expect(respuesta.status).to.equal(200)
+    })
+})
+
+Cypress.Commands.add('login',(username,password)=>{
+    cy.request({
+        method: "POST",
+        url: "https://pushing-it-backend.herokuapp.com/api/login",
+        body : {
+            "username" : username,
+            "password": password,
+        }
+    }).then(respuesta =>{
+        expect(respuesta.status).to.equal(200)
+    })
+})
+
+Cypress.Commands.add('deleteUser',(username)=>{
+    cy.request({
+        method: "POST",
+        url: "https://pushing-it-backend.herokuapp.com/api/deleteuser" + username.toLowerCase(),
+    }).then(respuesta =>{
+        expect(respuesta.status).to.equal(200)
+    })
+})
