@@ -1,6 +1,7 @@
 export class ShoppingCart{
     constructor(){
-        this.showTotalPrice= '//button[contains(text(),"Show total price")]'
+        this.showTotalPrice= '//button[contains(text(),"Show total price")]',
+        this.goToCheckOutButton = '//button[contains(text(),"Go to Checkout")]'
 
     }
 
@@ -16,6 +17,11 @@ export class ShoppingCart{
         cy.get("#price").invoke('text').then((secText)=>{
             assert.equal(secText,`${precio}`)
         })
+
+    }
+
+    goToCheckoutPage(){
+        cy.get
     }
 
 }
