@@ -21,9 +21,6 @@ export class CheckoutPage{
         cy.esperaBarraDeCarga()
     }
     
-    verificarDatosTicket(dato)
-    {
-        cy.contains(dato).should('have.length',1)
-    }
+    
 
 }
