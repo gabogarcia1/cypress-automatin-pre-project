@@ -1,7 +1,5 @@
 /// <reference types="cypress"/>
 
-import { LoginPage } from "../support/Pages/loginPage";
-import { RegistroPage } from "../support/Pages/registerPage";
 import { HomePage } from "../support/Pages/homePage";
 import { ProductsPage } from "../support/Pages/productsPage";
 import { ShoppingCart } from "../support/Pages/shoppingcart";
@@ -10,8 +8,6 @@ import { PurchaseModal } from "../support/Pages/purchaseModal";
 
 describe('Pre Entrega', () => {
   let datosUsuario,productos;
-  const loginPage= new LoginPage();
-  const registerPage= new RegistroPage();
   const homePage = new HomePage();
   const productPage=new ProductsPage();
   const shoppingCart=new ShoppingCart();
@@ -28,12 +24,12 @@ describe('Pre Entrega', () => {
     
   })
   beforeEach("Crear usuario y loguarse",()=>{ 
-    registerPage.registrarUsuario(datosUsuario.usuario,datosUsuario.password, datosUsuario.gender,datosUsuario.day,datosUsuario.month,datosUsuario.year)
-    loginPage.login(datosUsuario.usuario,datosUsuario.password);
+    cy.registerUser(datosUsuario.usuario,datosUsuario.password, datosUsuario.gender,datosUsuario.day,datosUsuario.month,datosUsuario.year)
+    cy.login(datosUsuario.usuario,datosUsuario.password);
   })
 
   afterEach("Eliminar usuario creado",()=>{
-    registerPage.borrarUsuario(datosUsuario.usuario)
+    cy.deleteUser(datosUsuario.usuario)
   })
 
   it('Hacer click en show total price y verificar el precio acumulado de 2 productos', () => {
