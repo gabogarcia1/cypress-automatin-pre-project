@@ -53,11 +53,5 @@ describe('Pre Entrega', () => {
     purchaseModal.verificaProducto(productos.SegundoProducto.nombre)
     purchaseModal.verificarCreditCard(datosUsuario.creditCardNumber)
     purchaseModal.verificarPrecioTotal(`${productos.PrimerProducto.precio + productos.SegundoProducto.precio}`)
-
-    // checkOutPage.verificarDatosTicket(datosUsuario.apellido)
-    // checkOutPage.verificarDatosTicket(productos.PrimerProducto.nombre)
-    // checkOutPage.verificarDatosTicket(productos.SegundoProducto.nombre)
-    // checkOutPage.verificarDatosTicket(datosUsuario.creditCardNumber)
-    // checkOutPage.verificarDatosTicket(`${productos.PrimerProducto.precio + productos.SegundoProducto.precio}`)
   })
 })
