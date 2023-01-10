@@ -1,7 +1,7 @@
 Cypress.Commands.add('registerUser',(username,password,gender,day,month,year)=>{
     cy.request({
         method: "POST",
-        url: "https://pushing-it-backend.herokuapp.com/api/register",
+        url: "https://pushing-it.onrender.com/api/register",
         body : {
             "username" : username,
             "password": password,
@@ -18,7 +18,7 @@ Cypress.Commands.add('registerUser',(username,password,gender,day,month,year)=>{
 Cypress.Commands.add('login',(username,password)=>{
     cy.request({
         method: "POST",
-        url: "https://pushing-it-backend.herokuapp.com/api/login",
+        url: "https://pushing-it.onrender.com/api/login",
         body : {
             "username" : username,
             "password": password,
@@ -34,7 +34,7 @@ Cypress.Commands.add('login',(username,password)=>{
 Cypress.Commands.add('deleteUser',(username)=>{
     cy.request({
         method: "DELETE",
-        url: "https://pushing-it-backend.herokuapp.com/api/deleteuser/" + username.toLowerCase(),
+        url: "https://pushing-it.onrender.com/api/deleteuser/" + username.toLowerCase(),
     }).then(respuesta =>{
         expect(respuesta.status).to.equal(200)
     })

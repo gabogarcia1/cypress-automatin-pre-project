@@ -1,0 +1,15 @@
+{
+    "PrimerUsuario":
+    {
+        "usuario1":"pushingit",
+        "password1":"123456!",
+        "gender": "Male"
+    },
+    "SegundoUsuario":
+    {
+        "usuario2":"pushingit",
+        "password1":"123456!",
+        "gender": "Female"
+
+    }
+}
